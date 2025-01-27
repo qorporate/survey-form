@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>QBall Survey Form</title>
+        <link rel="stylesheet" href="./css/reset.css" />
+        <link rel="stylesheet" href="./css/styles.css" />
+    </head>
+    <body>
+        <div class="form-container">
+            <h1>QBall Survey Form</h1>
+            <form id="venueForm">
+                <!-- Core Information -->
+                <label for="name">Venue Name:</label>
+                <input type="text" id="name" name="name" required />
+
+                <label for="description">Description:</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="3"
+                ></textarea>
+
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required />
+
+                // todo: this should be hidden, and populated after an address
+                is set
+                <label for="coordinates">Coordinates (Lat, Lng):</label>
+                <input
+                    type="text"
+                    id="coordinates"
+                    name="coordinates"
+                    placeholder="e.g., 6.5244, 3.3792"
+                    required
+                />
+
+                <!-- Physical Attributes -->
+                <label for="surfaceType">Surface Type:</label>
+                <select id="surfaceType" name="surfaceType" required>
+                    <option value="grass">Grass</option>
+                    <option value="artificialTurf">Artificial Turf</option>
+                    <option value="concrete">Concrete</option>
+                    <option value="sand">Sand</option>
+                    <option value="mixed">Mixed</option>
+                </select>
+
+                <label for="gameSize">Game Size:</label>
+                <select id="gameSize" name="gameSize" required>
+                    <option value="4-a-side">4-a-side</option>
+                    <option value="5-a-side">5-a-side</option>
+                    <option value="6-a-side">6-a-side</option>
+                    <option value="7-a-side">7-a-side</option>
+                    <option value="11-a-side">11-a-side</option>
+                </select>
+
+                <!-- Photos -->
+                <label for="photos">Upload Photos:</label>
+                <input
+                    type="file"
+                    id="photos"
+                    name="photos"
+                    multiple
+                    accept="image/*"
+                />
+
+                <!-- Surveyor Metadata -->
+                <label for="surveyorName">Surveyor Name:</label>
+                <input
+                    type="text"
+                    id="surveyorName"
+                    name="surveyorName"
+                    required
+                />
+
+                <!-- Submit Button -->
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
