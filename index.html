@@ -26,17 +26,21 @@
                 </div>
                 <div class="step" data-step="3">
                     <i class="fas fa-truck"></i>
-                    <span>Access</span>
+                    <span>Logistics</span>
                 </div>
                 <div class="step" data-step="4">
                     <i class="fas fa-clock"></i>
                     <span>Timing</span>
                 </div>
                 <div class="step" data-step="5">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>Amenities</span>
+                </div>
+                <div class="step" data-step="6">
                     <i class="fas fa-camera"></i>
                     <span>Photos</span>
                 </div>
-                <div class="step" data-step="6">
+                <div class="step" data-step="7">
                     <i class="fas fa-user"></i>
                     <span>Surveyor</span>
                 </div>
@@ -367,8 +371,86 @@
                     </div>
                 </div>
 
-                <!-- Page 5: Photos -->
                 <div class="form-page" data-page="5">
+                    <div class="form-section">
+                        <h2>Amenities</h2>
+                        <!-- Changing Facilities -->
+                        <div class="form-group">
+                            <label for="changingFacilities"
+                                >Changing Facilities:</label
+                            >
+                            <select
+                                id="changingFacilities"
+                                name="changingFacilities"
+                                required
+                            >
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Restrooms -->
+                        <div class="form-group">
+                            <label for="restrooms">Restrooms:</label>
+                            <select id="restrooms" name="restrooms" required>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Parking Availability -->
+                        <div class="form-group">
+                            <label for="parking">Parking Availability:</label>
+                            <select id="parking" name="parking" required>
+                                <option value="none">None</option>
+                                <option value="limited">Limited</option>
+                                <option value="ample">Ample</option>
+                            </select>
+                        </div>
+
+                        <!-- Nearby Food/Drink Vendors -->
+                        <div class="form-group">
+                            <label for="foodVendors"
+                                >Nearby Food/Drink Vendors:</label
+                            >
+                            <select
+                                id="foodVendors"
+                                name="foodVendors"
+                                required
+                            >
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Equipment Rental -->
+                        <div class="form-group">
+                            <label for="equipmentRental"
+                                >Equipment Rental:</label
+                            >
+                            <select
+                                id="equipmentRental"
+                                name="equipmentRental"
+                                required
+                            >
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Seating/Spectator Area -->
+                        <div class="form-group">
+                            <label for="seating">Seating/Spectator Area:</label>
+                            <select id="seating" name="seating" required>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 5: Photos -->
+                <div class="form-page" data-page="6">
                     <div class="form-section">
                         <h2>Photos</h2>
                         <div class="form-group">
@@ -389,7 +471,7 @@
                 </div>
 
                 <!-- Page 6: Surveyor Information -->
-                <div class="form-page" data-page="6">
+                <div class="form-page" data-page="7">
                     <div class="form-section">
                         <h2>Surveyor Information</h2>
                         <div class="form-group">
