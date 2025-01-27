@@ -49,3 +49,51 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const form2 = document.getElementById("venueForm");
+  const pages = document.querySelectorAll(".form-page");
+  const steps = document.querySelectorAll(".step");
+  const prevBtn = document.querySelector(".btn-prev");
+  const nextBtn = document.querySelector(".btn-next");
+  const submitBtn = document.querySelector(".btn-submit");
+  let currentPage = 1;
+  function showPage(pageNumber) {
+    pages.forEach((page) => {
+      page.classList.remove("active");
+      if (Number.parseInt(page.dataset.page) === pageNumber) {
+        page.classList.add("active");
+      }
+    });
+    steps.forEach((step) => {
+      const stepNumber = Number.parseInt(step.dataset.step);
+      step.classList.remove("active");
+      if (stepNumber === pageNumber) {
+        step.classList.add("active");
+      } else if (stepNumber < pageNumber) {
+        step.classList.add("completed");
+      } else {
+        step.classList.remove("completed");
+      }
+    });
+    prevBtn.disabled = pageNumber === 1;
+    if (pageNumber === pages.length) {
+      nextBtn.style.display = "none";
+      submitBtn.style.display = "block";
+    } else {
+      nextBtn.style.display = "block";
+      submitBtn.style.display = "none";
+    }
+  }
+  prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  });
+  nextBtn.addEventListener("click", () => {
+    if (currentPage < pages.length) {
+      currentPage++;
+      showPage(currentPage);
+    }
+  });
+});
