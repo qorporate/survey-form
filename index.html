@@ -18,21 +18,25 @@
             <div class="progress-bar">
                 <div class="step active" data-step="1">
                     <i class="fas fa-info-circle"></i>
-                    <span>Core Info</span>
+                    <span>Core</span>
                 </div>
                 <div class="step" data-step="2">
-                    <i class="fas fa-ruler"></i>
-                    <span>Physical</span>
+                    <i class="fas fa-futbol"></i>
+                    <span>Pitch</span>
                 </div>
                 <div class="step" data-step="3">
+                    <i class="fas fa-truck"></i>
+                    <span>Access</span>
+                </div>
+                <div class="step" data-step="4">
                     <i class="fas fa-clock"></i>
                     <span>Timing</span>
                 </div>
-                <div class="step" data-step="4">
+                <div class="step" data-step="5">
                     <i class="fas fa-camera"></i>
                     <span>Photos</span>
                 </div>
-                <div class="step" data-step="5">
+                <div class="step" data-step="6">
                     <i class="fas fa-user"></i>
                     <span>Surveyor</span>
                 </div>
@@ -66,20 +70,53 @@
                                 required
                             />
                         </div>
+
+                        <div class="form-group">
+                            <label for="venueType">Venue Type:</label>
+                            <select id="venueType" name="venueType" required>
+                                <option value="park">Public Park</option>
+                                <option value="privateFacility">
+                                    Private Facility
+                                </option>
+                                <option value="school">School</option>
+                                <option value="religiousInstitution">
+                                    Religious Institution
+                                </option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number:</label>
+                            <input
+                                type="tel"
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                placeholder="e.g., +234 123 456 7890"
+                            />
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="e.g., info@venue.com"
+                            />
+                        </div>
                     </div>
                 </div>
 
-                <!-- Page 2: Physical Attributes -->
+                <!-- Page 2: Pitch Attributes -->
                 <div class="form-page" data-page="2">
                     <div class="form-section">
-                        <h2>Physical Attributes</h2>
+                        <h2>Pitch Attributes</h2>
                         <div class="form-group">
-                            <label for="surfaceType">Surface Type:</label>
-                            <select
-                                id="surfaceType"
-                                name="surfaceType"
-                                required
-                            >
+                            <label for="pitchType">Pitch Type:</label>
+                            <select id="pitchType" name="pitchType" required>
                                 <option value="grass">Grass</option>
                                 <option value="artificialTurf">
                                     Artificial Turf
@@ -87,17 +124,6 @@
                                 <option value="concrete">Concrete</option>
                                 <option value="sand">Sand</option>
                                 <option value="mixed">Mixed</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="gameSize">Game Size:</label>
-                            <select id="gameSize" name="gameSize" required>
-                                <option value="4-a-side">4-a-side</option>
-                                <option value="5-a-side">5-a-side</option>
-                                <option value="6-a-side">6-a-side</option>
-                                <option value="7-a-side">7-a-side</option>
-                                <option value="11-a-side">11-a-side</option>
                             </select>
                         </div>
 
@@ -110,11 +136,140 @@
                                 <option value="poor">Poor</option>
                             </select>
                         </div>
+
+                        <!-- Pitch Dimensions -->
+                        <div class="form-group">
+                            <label for="pitchDimensions"
+                                >Pitch Dimensions (Length x Width in
+                                meters):</label
+                            >
+                            <input
+                                type="text"
+                                id="pitchDimensions"
+                                name="pitchDimensions"
+                                placeholder="e.g., 60x40"
+                                required
+                            />
+                        </div>
+
+                        <!-- Number of Pitches Available -->
+                        <div class="form-group">
+                            <label for="numberOfPitches"
+                                >Number of Pitches Available:</label
+                            >
+                            <input
+                                type="number"
+                                id="numberOfPitches"
+                                name="numberOfPitches"
+                                min="1"
+                                required
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gameSize">Game Size:</label>
+                            <select id="gameSize" name="gameSize" required>
+                                <option value="3v3">3v3</option>
+                                <option value="4v4">4v4</option>
+                                <option value="5v5">5v5</option>
+                                <option value="7v7">7v7</option>
+                                <option value="9v9">9v9</option>
+                                <option value="11v11">11v11</option>
+                            </select>
+                        </div>
+
+                        <!-- Lighting Available -->
+                        <div class="form-group">
+                            <label for="lighting">Lighting Available:</label>
+                            <select id="lighting" name="lighting" required>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Fencing -->
+                        <div class="form-group">
+                            <label for="fencing">Fencing:</label>
+                            <select id="fencing" name="fencing" required>
+                                <option value="full">Full</option>
+                                <option value="partial">Partial</option>
+                                <option value="none">None</option>
+                            </select>
+                        </div>
+
+                        <!-- Slope/Evenness -->
+                        <div class="form-group">
+                            <label for="slope">Slope/Evenness:</label>
+                            <select id="slope" name="slope" required>
+                                <option value="flat">Flat</option>
+                                <option value="slightSlope">
+                                    Slight Slope
+                                </option>
+                                <option value="uneven">Uneven</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Page 3: Timing Information -->
+                <!-- Page 3: Access & Logistics -->
                 <div class="form-page" data-page="3">
+                    <div class="form-section">
+                        <h2>Access & Logistics</h2>
+
+                        <!-- Ownership -->
+                        <div class="form-group">
+                            <label for="ownership">Ownership:</label>
+                            <select id="ownership" name="ownership" required>
+                                <option value="government">Government</option>
+                                <option value="private">Private</option>
+                                <option value="school">School</option>
+                                <option value="religiousInstitution">
+                                    Religious Institution
+                                </option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Public/Private -->
+                        <div class="form-group">
+                            <label for="publicPrivate">Public/Private:</label>
+                            <select
+                                id="publicPrivate"
+                                name="publicPrivate"
+                                required
+                            >
+                                <option value="public">Public</option>
+                                <option value="private">Private</option>
+                            </select>
+                        </div>
+
+                        <!-- Cost to Play -->
+                        <div class="form-group">
+                            <label for="costToPlay">Cost to Play:</label>
+                            <select id="costToPlay" name="costToPlay" required>
+                                <option value="free">Free</option>
+                                <option value="paid">Paid</option>
+                            </select>
+                        </div>
+
+                        <!-- Hourly Rate -->
+                        <div class="form-group">
+                            <label for="hourlyRate"
+                                >Hourly Rate (if paid):</label
+                            >
+                            <input
+                                type="number"
+                                id="hourlyRate"
+                                name="hourlyRate"
+                                placeholder="e.g., 5000"
+                                min="0"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 4: Timing Information -->
+                <div class="form-page" data-page="4">
                     <div class="form-section">
                         <h2>Timing Information</h2>
                         <div class="form-group">
@@ -198,11 +353,22 @@
                                 </label>
                             </div>
                         </div>
+
+                        <!-- Peak Times -->
+                        <div class="form-group">
+                            <label for="peakTimes">Peak Times:</label>
+                            <input
+                                type="text"
+                                id="peakTimes"
+                                name="peakTimes"
+                                placeholder="e.g., Weekends 4 PM - 7 PM"
+                            />
+                        </div>
                     </div>
                 </div>
 
-                <!-- Page 4: Photos -->
-                <div class="form-page" data-page="4">
+                <!-- Page 5: Photos -->
+                <div class="form-page" data-page="5">
                     <div class="form-section">
                         <h2>Photos</h2>
                         <div class="form-group">
@@ -222,8 +388,8 @@
                     </div>
                 </div>
 
-                <!-- Page 5: Surveyor Information -->
-                <div class="form-page" data-page="5">
+                <!-- Page 6: Surveyor Information -->
+                <div class="form-page" data-page="6">
                     <div class="form-section">
                         <h2>Surveyor Information</h2>
                         <div class="form-group">
