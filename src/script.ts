@@ -57,3 +57,17 @@ async function submitForm(event: Event) {
 // Attach form submission handler
 const form = document.getElementById("venueForm") as HTMLFormElement;
 form.addEventListener("submit", submitForm);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const fileInput = document.getElementById("photos") as HTMLFormElement;
+    const fileNames = document.getElementById("file-names") as HTMLFormElement;
+
+    fileInput.addEventListener("change", function () {
+        fileNames.innerHTML = "";
+        for (let i = 0; i < this.files.length; i++) {
+            const fileName = document.createElement("p");
+            fileName.textContent = this.files[i].name;
+            fileNames.appendChild(fileName);
+        }
+    });
+});

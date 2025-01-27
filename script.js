@@ -37,3 +37,15 @@ async function submitForm(event) {
 }
 var form = document.getElementById("venueForm");
 form.addEventListener("submit", submitForm);
+document.addEventListener("DOMContentLoaded", () => {
+  const fileInput = document.getElementById("photos");
+  const fileNames = document.getElementById("file-names");
+  fileInput.addEventListener("change", function() {
+    fileNames.innerHTML = "";
+    for (let i = 0;i < this.files.length; i++) {
+      const fileName = document.createElement("p");
+      fileName.textContent = this.files[i].name;
+      fileNames.appendChild(fileName);
+    }
+  });
+});

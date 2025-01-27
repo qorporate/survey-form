@@ -6,76 +6,114 @@
         <title>QBall Survey Form</title>
         <link rel="stylesheet" href="./css/reset.css" />
         <link rel="stylesheet" href="./css/styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
     </head>
     <body>
         <div class="form-container">
-            <h1>QBall Survey Form</h1>
+            <h1><i class="fas fa-futbol"></i> QBall Survey Form</h1>
             <form id="venueForm">
-                <!-- Core Information -->
-                <label for="name">Venue Name:</label>
-                <input type="text" id="name" name="name" required />
+                <div class="form-section">
+                    <h2>Core Information</h2>
+                    <div class="form-group">
+                        <label for="name">Venue Name:</label>
+                        <input type="text" id="name" name="name" required />
+                    </div>
 
-                <label for="description">Description:</label>
-                <textarea
-                    id="description"
-                    name="description"
-                    rows="3"
-                ></textarea>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea
+                            id="description"
+                            name="description"
+                            rows="3"
+                        ></textarea>
+                    </div>
 
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required />
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input
+                            type="text"
+                            id="address"
+                            name="address"
+                            required
+                        />
+                    </div>
 
-                // todo: this should be hidden, and populated after an address
-                is set
-                <label for="coordinates">Coordinates (Lat, Lng):</label>
-                <input
-                    type="text"
-                    id="coordinates"
-                    name="coordinates"
-                    placeholder="e.g., 6.5244, 3.3792"
-                    required
-                />
+                    <div class="form-group hidden">
+                        <label for="coordinates">Coordinates (Lat, Lng):</label>
+                        <input
+                            type="text"
+                            id="coordinates"
+                            name="coordinates"
+                            placeholder="e.g., 6.5244, 3.3792"
+                            required
+                        />
+                    </div>
+                </div>
 
-                <!-- Physical Attributes -->
-                <label for="surfaceType">Surface Type:</label>
-                <select id="surfaceType" name="surfaceType" required>
-                    <option value="grass">Grass</option>
-                    <option value="artificialTurf">Artificial Turf</option>
-                    <option value="concrete">Concrete</option>
-                    <option value="sand">Sand</option>
-                    <option value="mixed">Mixed</option>
-                </select>
+                <div class="form-section">
+                    <h2>Physical Attributes</h2>
+                    <div class="form-group">
+                        <label for="surfaceType">Surface Type:</label>
+                        <select id="surfaceType" name="surfaceType" required>
+                            <option value="grass">Grass</option>
+                            <option value="artificialTurf">
+                                Artificial Turf
+                            </option>
+                            <option value="concrete">Concrete</option>
+                            <option value="sand">Sand</option>
+                            <option value="mixed">Mixed</option>
+                        </select>
+                    </div>
 
-                <label for="gameSize">Game Size:</label>
-                <select id="gameSize" name="gameSize" required>
-                    <option value="4-a-side">4-a-side</option>
-                    <option value="5-a-side">5-a-side</option>
-                    <option value="6-a-side">6-a-side</option>
-                    <option value="7-a-side">7-a-side</option>
-                    <option value="11-a-side">11-a-side</option>
-                </select>
+                    <div class="form-group">
+                        <label for="gameSize">Game Size:</label>
+                        <select id="gameSize" name="gameSize" required>
+                            <option value="4-a-side">4-a-side</option>
+                            <option value="5-a-side">5-a-side</option>
+                            <option value="6-a-side">6-a-side</option>
+                            <option value="7-a-side">7-a-side</option>
+                            <option value="11-a-side">11-a-side</option>
+                        </select>
+                    </div>
+                </div>
 
-                <!-- Photos -->
-                <label for="photos">Upload Photos:</label>
-                <input
-                    type="file"
-                    id="photos"
-                    name="photos"
-                    multiple
-                    accept="image/*"
-                />
+                <div class="form-section">
+                    <h2>Photos</h2>
+                    <div class="form-group">
+                        <label for="photos" class="file-upload">
+                            <i class="fas fa-cloud-upload-alt"></i> Upload
+                            Photos
+                            <input
+                                type="file"
+                                id="photos"
+                                name="photos"
+                                multiple
+                                accept="image/*"
+                            />
+                        </label>
+                        <div id="file-names"></div>
+                    </div>
+                </div>
 
-                <!-- Surveyor Metadata -->
-                <label for="surveyorName">Surveyor Name:</label>
-                <input
-                    type="text"
-                    id="surveyorName"
-                    name="surveyorName"
-                    required
-                />
+                <div class="form-section">
+                    <h2>Surveyor Information</h2>
+                    <div class="form-group">
+                        <label for="surveyorName">Surveyor Name:</label>
+                        <input
+                            type="text"
+                            id="surveyorName"
+                            name="surveyorName"
+                            required
+                        />
+                    </div>
+                </div>
 
-                <!-- Submit Button -->
-                <button type="submit">Submit</button>
+                <button type="submit">
+                    Submit Survey <i class="fas fa-paper-plane"></i>
+                </button>
             </form>
         </div>
         <script src="script.js"></script>
