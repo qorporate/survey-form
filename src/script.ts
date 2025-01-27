@@ -74,14 +74,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-//
+// events for page navigation
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("venueForm");
     const pages = document.querySelectorAll(".form-page");
     const steps = document.querySelectorAll(".step");
-    const prevBtn = document.querySelector(".btn-prev");
-    const nextBtn = document.querySelector(".btn-next");
-    const submitBtn = document.querySelector(".btn-submit");
+    const prevBtn = document.querySelector(".btn-prev") as HTMLButtonElement;
+    const nextBtn = document.querySelector(".btn-next") as HTMLButtonElement;
+    const submitBtn = document.querySelector(
+        ".btn-submit"
+    ) as HTMLButtonElement;
     let currentPage = 1;
 
     // Navigation functions
