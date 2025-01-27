@@ -90,6 +90,8 @@
                             </select>
                         </div>
 
+                        <h2>Contact Information</h2>
+
                         <!-- Phone Number -->
                         <div class="form-group">
                             <label for="phoneNumber">Phone Number:</label>
@@ -269,6 +271,38 @@
                                 min="0"
                             />
                         </div>
+
+                        <h2>Safety</h2>
+                        <!-- First Aid Kit -->
+                        <div class="form-group">
+                            <label for="firstAid">First Aid Kit:</label>
+                            <select id="firstAid" name="firstAid" required>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Flood Risk -->
+                        <div class="form-group">
+                            <label for="floodRisk">Flood Risk:</label>
+                            <select id="floodRisk" name="floodRisk" required>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+
+                        <!-- Crime Risk Assessment -->
+                        <div class="form-group">
+                            <label for="crimeRisk"
+                                >Surveyor's Crime Risk Assessment:</label
+                            >
+                            <select id="crimeRisk" name="crimeRisk" required>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -368,9 +402,25 @@
                                 placeholder="e.g., Weekends 4 PM - 7 PM"
                             />
                         </div>
+
+                        <h2>Other</h2>
+                        <!-- Average visitors per session -->
+                        <div class="form-group">
+                            <label for="visitorsPerSession"
+                                >Average Visitors Per Session:</label
+                            >
+                            <input
+                                type="number"
+                                id="visitorsPerSession"
+                                name="visitorsPerSession"
+                                min="1"
+                                required
+                            />
+                        </div>
                     </div>
                 </div>
 
+                <!--  Page 6: Amenities -->
                 <div class="form-page" data-page="5">
                     <div class="form-section">
                         <h2>Amenities</h2>
@@ -449,7 +499,7 @@
                     </div>
                 </div>
 
-                <!-- Page 5: Photos -->
+                <!-- Page 6: Photos -->
                 <div class="form-page" data-page="6">
                     <div class="form-section">
                         <h2>Photos</h2>
@@ -470,7 +520,7 @@
                     </div>
                 </div>
 
-                <!-- Page 6: Surveyor Information -->
+                <!-- Page 7: Surveyor Information -->
                 <div class="form-page" data-page="7">
                     <div class="form-section">
                         <h2>Surveyor Information</h2>
