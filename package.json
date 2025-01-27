@@ -1,0 +1,14 @@
+{
+    "name": "survey-form",
+    "module": "index.js",
+    "type": "module",
+    "scripts": {
+        "dev": "bun build ./src/index.ts --outfile ./index.js --watch"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    }
+}
