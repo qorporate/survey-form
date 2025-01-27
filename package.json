@@ -1,9 +1,9 @@
 {
     "name": "survey-form",
-    "module": "index.js",
+    "module": "script.js",
     "type": "module",
     "scripts": {
-        "dev": "bun build ./src/index.ts --outfile ./index.js --watch"
+        "dev": "bun build ./src/script.ts --outfile ./script.js --watch"
     },
     "devDependencies": {
         "@types/bun": "latest"

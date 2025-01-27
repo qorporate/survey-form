@@ -1,2 +1,2 @@
-// src/index.ts
+// src/script.ts
 console.log("Hello!");
