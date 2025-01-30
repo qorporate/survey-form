@@ -78,6 +78,14 @@ async function submitForm(event) {
         isLightingAvailable,
         pitchFencingLevel,
         pitchEvenness,
+        // access & logistics
+        venueOwnership,
+        publicOrPrivate,
+        costToPlay,
+        venueHourlyRate,
+        isFirstAidKitAvailable,
+        floodRiskLevel,
+        surveyorCrimeAssessment,
         // timing
         venueClosingTime,
         venueOpeningTime,
