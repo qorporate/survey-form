@@ -153,7 +153,6 @@ function setupEventListeners() {
 
     // events for page navigation
     document.addEventListener("DOMContentLoaded", () => {
-        const form = document.getElementById("venueForm");
         const pages = document.querySelectorAll(".form-page");
         const steps = document.querySelectorAll(".step");
         const prevBtn = document.querySelector(".btn-prev");
@@ -193,6 +192,19 @@ function setupEventListeners() {
             }
         }
 
+        function validatePage1() {
+            const fields = {
+                name: document.getElementById("name").value.trim(),
+                address: document.getElementById("address").value.trim(),
+                "venue type": document.getElementById("venueType").value,
+                "phone number": document.getElementById("phoneNumber").value,
+                "email address": document.getElementById("email").value,
+            };
+
+            const missingFields = getMissingFields(fields);
+            return alertMissingFields(missingFields);
+        }
+
         // Event listeners for navigation
         prevBtn.addEventListener("click", () => {
             if (currentPage > 1) {
@@ -202,12 +214,42 @@ function setupEventListeners() {
         });
 
         nextBtn.addEventListener("click", () => {
-            if (currentPage < pages.length) {
-                currentPage++;
-                showPage(currentPage);
+            const validationFunctions = [
+                validatePage1,
+                // validatePage2,
+                // validatePage3,
+                // validatePage4,
+                // validatePage5,
+                // validatePage6,
+                // validatePage7,
+            ];
+
+            // validate before switching pages
+            if (validationFunctions[currentPage - 1]()) {
+                if (currentPage < pages.length) {
+                    currentPage++;
+                    showPage(currentPage);
+                }
             }
         });
     });
+}
+
+function getMissingFields(fields) {
+    return Object.entries(fields)
+        .filter(([_, value]) => value === "")
+        .map(([key, _]) => key.charAt(0).toUpperCase() + key.slice(1));
+}
+
+function alertMissingFields(missingFields) {
+    if (missingFields.length > 0) {
+        const missingFieldsText = missingFields.join(", ");
+        alert(
+            `Please fill in the following required fields: ${missingFieldsText}.`
+        );
+        return true;
+    }
+    return false;
 }
 
 setupEventListeners();
