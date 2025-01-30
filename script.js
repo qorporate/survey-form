@@ -199,85 +199,6 @@ function setupEventListeners() {
             }
         }
 
-        // todo: can we get elements with `required` attribute from the DOM?
-        function validatePage1() {
-            const fields = {
-                name: document.getElementById("name").value.trim(),
-                address: document.getElementById("address").value.trim(),
-                venueType: document.getElementById("venueType").value,
-                phoneNumber: document.getElementById("phoneNumber").value,
-                email: document.getElementById("email").value,
-            };
-
-            return alertMissingFields(getMissingFields(fields));
-        }
-
-        function validatePage2() {
-            const fields = {
-                pitchDimensions: document
-                    .getElementById("pitchDimensions")
-                    .value.trim(),
-                numberOfPitches:
-                    document.getElementById("numberOfPitches").value,
-            };
-
-            return alertMissingFields(getMissingFields(fields));
-        }
-
-        function validatePage3() {
-            const fields = {
-                venueHourlyRate:
-                    document.getElementById("venueHourlyRate").value, // todo: how are numbers handled
-            };
-
-            return alertMissingFields(getMissingFields(fields));
-        }
-
-        // todo: for numeric or array values, i can highlight the fields by passing a value to alertMissingFields().
-        // input is of type - field: { id: string }
-        function validatePage4() {
-            const fields = {
-                venueOpeningTime: document
-                    .getElementById("venueOpeningTime")
-                    .value.trim(), // todo: how is time handled
-                venueClosingTime: document
-                    .getElementById("venueClosingTime")
-                    .value.trim(), // todo: how is time handled
-                checkedDays: document.querySelectorAll(
-                    'input[name="days"]:checked'
-                ).length, // todo: how do we highlight this section?
-                venuePeakTimes: document
-                    .getElementById("venuePeakTimes")
-                    .value.trim(),
-                averageVisitorsPerSession: document.getElementById(
-                    "averageVisitorsPerSession"
-                ).value,
-            };
-
-            return alertMissingFields(getMissingFields(fields));
-        }
-
-        function validatePage5() {
-            return true;
-        }
-        function validatePage6() {
-            return true;
-        }
-
-        function validatePage7() {
-            const fields = {
-                surveyorName: document
-                    .getElementById("surveyorName")
-                    .value.trim(),
-                surveyDate: document.getElementById("surveyDate").value.trim(), // todo: how are dates handled?
-                surveyNotes: document
-                    .getElementById("surveyNotes")
-                    .value.trim(),
-            };
-
-            return alertMissingFields(getMissingFields(fields));
-        }
-
         const validationFunctions = [
             validatePage1,
             validatePage2,
@@ -366,6 +287,76 @@ function alertMissingFields(missingFields) {
         return false;
     }
     return true;
+}
+
+// page validation functions
+// todo: can we get elements with `required` attribute from the DOM?
+function validatePage1() {
+    const fields = {
+        name: document.getElementById("name").value.trim(),
+        address: document.getElementById("address").value.trim(),
+        venueType: document.getElementById("venueType").value,
+        phoneNumber: document.getElementById("phoneNumber").value,
+        email: document.getElementById("email").value,
+    };
+
+    return alertMissingFields(getMissingFields(fields));
+}
+
+function validatePage2() {
+    const fields = {
+        pitchDimensions: document
+            .getElementById("pitchDimensions")
+            .value.trim(),
+        numberOfPitches: document.getElementById("numberOfPitches").value,
+    };
+
+    return alertMissingFields(getMissingFields(fields));
+}
+
+function validatePage3() {
+    const fields = {
+        venueHourlyRate: document.getElementById("venueHourlyRate").value, // todo: how are numbers handled
+    };
+
+    return alertMissingFields(getMissingFields(fields));
+}
+
+// todo: for numeric or array values, i can highlight the fields by passing a value to alertMissingFields().
+// input is of type - field: { id: string }
+function validatePage4() {
+    const fields = {
+        venueOpeningTime: document
+            .getElementById("venueOpeningTime")
+            .value.trim(), // todo: how is time handled
+        venueClosingTime: document
+            .getElementById("venueClosingTime")
+            .value.trim(), // todo: how is time handled
+        checkedDays: document.querySelectorAll('input[name="days"]:checked')
+            .length, // todo: how do we highlight this section?
+        venuePeakTimes: document.getElementById("venuePeakTimes").value.trim(),
+        averageVisitorsPerSession: document.getElementById(
+            "averageVisitorsPerSession"
+        ).value,
+    };
+
+    return alertMissingFields(getMissingFields(fields));
+}
+
+function validatePage5() {
+    return true;
+}
+function validatePage6() {
+    return true;
+}
+
+function validatePage7() {
+    const fields = {
+        surveyorName: document.getElementById("surveyorName").value.trim(),
+        surveyDate: document.getElementById("surveyDate").value.trim(), // todo: how are dates handled?
+    };
+
+    return alertMissingFields(getMissingFields(fields));
 }
 
 setupEventListeners();
