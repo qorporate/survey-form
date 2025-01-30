@@ -10,6 +10,7 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         />
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     </head>
     <body>
         <div class="form-container">
@@ -134,8 +135,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="condition">Pitch Condition:</label>
-                            <select id="condition" name="condition" required>
+                            <label for="pitchCondition">Pitch Condition:</label>
+                            <select
+                                id="pitchCondition"
+                                name="pitchCondition"
+                                required
+                            >
                                 <option value="excellent">Excellent</option>
                                 <option value="good">Good</option>
                                 <option value="fair">Fair</option>
@@ -172,6 +177,7 @@
                             />
                         </div>
 
+                        // todo: this should be a checkbox, not a radio button
                         <div class="form-group">
                             <label for="gameSize">Game Size:</label>
                             <select id="gameSize" name="gameSize" required>
@@ -186,8 +192,14 @@
 
                         <!-- Lighting Available -->
                         <div class="form-group">
-                            <label for="lighting">Lighting Available:</label>
-                            <select id="lighting" name="lighting" required>
+                            <label for="isLightingAvailable"
+                                >Lighting Available:</label
+                            >
+                            <select
+                                id="isLightingAvailable"
+                                name="isLightingAvailable"
+                                required
+                            >
                                 <option value="yes">Yes</option>
                                 <option value="no">No</option>
                             </select>
@@ -195,8 +207,12 @@
 
                         <!-- Fencing -->
                         <div class="form-group">
-                            <label for="fencing">Fencing:</label>
-                            <select id="fencing" name="fencing" required>
+                            <label for="pitchFencing">Fencing:</label>
+                            <select
+                                id="pitchFencing"
+                                name="pitchFencing"
+                                required
+                            >
                                 <option value="full">Full</option>
                                 <option value="partial">Partial</option>
                                 <option value="none">None</option>
@@ -205,8 +221,12 @@
 
                         <!-- Slope/Evenness -->
                         <div class="form-group">
-                            <label for="slope">Slope/Evenness:</label>
-                            <select id="slope" name="slope" required>
+                            <label for="pitchEvenness">Slope/Evenness:</label>
+                            <select
+                                id="pitchEvenness"
+                                name="pitchEvenness"
+                                required
+                            >
                                 <option value="flat">Flat</option>
                                 <option value="slightSlope">
                                     Slight Slope
@@ -224,8 +244,12 @@
 
                         <!-- Ownership -->
                         <div class="form-group">
-                            <label for="ownership">Ownership:</label>
-                            <select id="ownership" name="ownership" required>
+                            <label for="venueOwnership">Ownership:</label>
+                            <select
+                                id="venueOwnership"
+                                name="venueOwnership"
+                                required
+                            >
                                 <option value="government">Government</option>
                                 <option value="private">Private</option>
                                 <option value="school">School</option>
@@ -238,10 +262,10 @@
 
                         <!-- Public/Private -->
                         <div class="form-group">
-                            <label for="publicPrivate">Public/Private:</label>
+                            <label for="publicOrPrivate">Public/Private:</label>
                             <select
-                                id="publicPrivate"
-                                name="publicPrivate"
+                                id="publicOrPrivate"
+                                name="publicOrPrivate"
                                 required
                             >
                                 <option value="public">Public</option>
@@ -260,13 +284,13 @@
 
                         <!-- Hourly Rate -->
                         <div class="form-group">
-                            <label for="hourlyRate"
+                            <label for="venueHourlyRate"
                                 >Hourly Rate (if paid):</label
                             >
                             <input
                                 type="number"
-                                id="hourlyRate"
-                                name="hourlyRate"
+                                id="venueHourlyRate"
+                                name="venueHourlyRate"
                                 placeholder="e.g., 5000"
                                 min="0"
                             />
@@ -275,8 +299,14 @@
                         <h2>Safety</h2>
                         <!-- First Aid Kit -->
                         <div class="form-group">
-                            <label for="firstAid">First Aid Kit:</label>
-                            <select id="firstAid" name="firstAid" required>
+                            <label for="isFirstAidKitAvailable"
+                                >First Aid Kit:</label
+                            >
+                            <select
+                                id="isFirstAidKitAvailable"
+                                name="isFirstAidKitAvailable"
+                                required
+                            >
                                 <option value="yes">Yes</option>
                                 <option value="no">No</option>
                             </select>
@@ -284,8 +314,12 @@
 
                         <!-- Flood Risk -->
                         <div class="form-group">
-                            <label for="floodRisk">Flood Risk:</label>
-                            <select id="floodRisk" name="floodRisk" required>
+                            <label for="floodRiskLevel">Flood Risk:</label>
+                            <select
+                                id="floodRiskLevel"
+                                name="floodRiskLevel"
+                                required
+                            >
                                 <option value="low">Low</option>
                                 <option value="medium">Medium</option>
                                 <option value="high">High</option>
@@ -294,10 +328,14 @@
 
                         <!-- Crime Risk Assessment -->
                         <div class="form-group">
-                            <label for="crimeRisk"
+                            <label for="surveyorCrimeAssessment"
                                 >Surveyor's Crime Risk Assessment:</label
                             >
-                            <select id="crimeRisk" name="crimeRisk" required>
+                            <select
+                                id="surveyorCrimeAssessment"
+                                name="surveyorCrimeAssessment"
+                                required
+                            >
                                 <option value="low">Low</option>
                                 <option value="medium">Medium</option>
                                 <option value="high">High</option>
@@ -311,25 +349,26 @@
                     <div class="form-section">
                         <h2>Timing Information</h2>
                         <div class="form-group">
-                            <label for="openingTime">Opening Time:</label>
+                            <label for="venueOpeningTime">Opening Time:</label>
                             <input
                                 type="time"
-                                id="openingTime"
-                                name="openingTime"
+                                id="venueOpeningTime"
+                                name="venueOpeningTime"
                                 required
                             />
                         </div>
 
                         <div class="form-group">
-                            <label for="closingTime">Closing Time:</label>
+                            <label for="venueClosingTime">Closing Time:</label>
                             <input
                                 type="time"
-                                id="closingTime"
-                                name="closingTime"
+                                id="venueClosingTime"
+                                name="venueClosingTime"
                                 required
                             />
                         </div>
 
+                        // todo: how do i get the value for this checkbox?
                         <div class="form-group">
                             <label>Available Days:</label>
                             <div class="checkbox-group">
@@ -394,11 +433,11 @@
 
                         <!-- Peak Times -->
                         <div class="form-group">
-                            <label for="peakTimes">Peak Times:</label>
+                            <label for="venuePeakTimes">Peak Times:</label>
                             <input
                                 type="text"
-                                id="peakTimes"
-                                name="peakTimes"
+                                id="venuePeakTimes"
+                                name="venuePeakTimes"
                                 placeholder="e.g., Weekends 4 PM - 7 PM"
                             />
                         </div>
@@ -406,13 +445,13 @@
                         <h2>Other</h2>
                         <!-- Average visitors per session -->
                         <div class="form-group">
-                            <label for="visitorsPerSession"
+                            <label for="averageVisitorsPerSession"
                                 >Average Visitors Per Session:</label
                             >
                             <input
                                 type="number"
-                                id="visitorsPerSession"
-                                name="visitorsPerSession"
+                                id="averageVisitorsPerSession"
+                                name="averageVisitorsPerSession"
                                 min="1"
                                 required
                             />
@@ -420,18 +459,18 @@
                     </div>
                 </div>
 
-                <!--  Page 6: Amenities -->
+                <!--  Page 5: Amenities -->
                 <div class="form-page" data-page="5">
                     <div class="form-section">
                         <h2>Amenities</h2>
                         <!-- Changing Facilities -->
                         <div class="form-group">
-                            <label for="changingFacilities"
+                            <label for="hasChangingFacilities"
                                 >Changing Facilities:</label
                             >
                             <select
-                                id="changingFacilities"
-                                name="changingFacilities"
+                                id="hasChangingFacilities"
+                                name="hasChangingFacilities"
                                 required
                             >
                                 <option value="yes">Yes</option>
@@ -441,8 +480,8 @@
 
                         <!-- Restrooms -->
                         <div class="form-group">
-                            <label for="restrooms">Restrooms:</label>
-                            <select id="restrooms" name="restrooms" required>
+                            <label for="hasRestrooms">Restrooms:</label>
+                            <select id="hasRestrooms" name="hasRestrooms" required>
                                 <option value="yes">Yes</option>
                                 <option value="no">No</option>
                             </select>
@@ -450,8 +489,8 @@
 
                         <!-- Parking Availability -->
                         <div class="form-group">
-                            <label for="parking">Parking Availability:</label>
-                            <select id="parking" name="parking" required>
+                            <label for="parkingAvailability">Parking Availability:</label>
+                            <select id="parkingAvailability" name="parkingAvailability" required>
                                 <option value="none">None</option>
                                 <option value="limited">Limited</option>
                                 <option value="ample">Ample</option>
@@ -460,12 +499,12 @@
 
                         <!-- Nearby Food/Drink Vendors -->
                         <div class="form-group">
-                            <label for="foodVendors"
+                            <label for="hasFoodOrDrinkVendors"
                                 >Nearby Food/Drink Vendors:</label
                             >
                             <select
-                                id="foodVendors"
-                                name="foodVendors"
+                                id="hasFoodOrDrinkVendors"
+                                name="hasFoodOrDrinkVendors"
                                 required
                             >
                                 <option value="yes">Yes</option>
@@ -475,12 +514,12 @@
 
                         <!-- Equipment Rental -->
                         <div class="form-group">
-                            <label for="equipmentRental"
+                            <label for="hasEquipmentRental"
                                 >Equipment Rental:</label
                             >
                             <select
-                                id="equipmentRental"
-                                name="equipmentRental"
+                                id="hasEquipmentRental"
+                                name="hasEquipmentRental"
                                 required
                             >
                                 <option value="yes">Yes</option>
@@ -490,8 +529,8 @@
 
                         <!-- Seating/Spectator Area -->
                         <div class="form-group">
-                            <label for="seating">Seating/Spectator Area:</label>
-                            <select id="seating" name="seating" required>
+                            <label for="hasSeatingOrSpectatorArea">Seating/Spectator Area:</label>
+                            <select id="hasSeatingOrSpectatorArea" name="hasSeatingOrSpectatorArea" required>
                                 <option value="yes">Yes</option>
                                 <option value="no">No</option>
                             </select>
