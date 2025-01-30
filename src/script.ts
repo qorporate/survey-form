@@ -54,82 +54,92 @@ async function submitForm(event: Event) {
     alert("Form submitted successfully!");
 }
 
-// Attach form submission handler
-const form = document.getElementById("venueForm") as HTMLFormElement;
-form.addEventListener("submit", submitForm);
+function setupEventListeners() {
+    // Attach form submission handler
+    const form = document.getElementById("venueForm") as HTMLFormElement;
+    form.addEventListener("submit", submitForm);
 
-// event listener for photo uploads
-// adds fileNames below button to show items have been uploaded
-document.addEventListener("DOMContentLoaded", () => {
-    const fileInput = document.getElementById("photos") as HTMLFormElement;
-    const fileNames = document.getElementById("file-names") as HTMLFormElement;
+    // event listener for photo uploads
+    // adds fileNames below button to show items have been uploaded
+    document.addEventListener("DOMContentLoaded", () => {
+        const fileInput = document.getElementById("photos") as HTMLFormElement;
+        const fileNames = document.getElementById(
+            "file-names"
+        ) as HTMLFormElement;
 
-    fileInput.addEventListener("change", function () {
-        fileNames.innerHTML = "";
-        for (let i = 0; i < this.files.length; i++) {
-            const fileName = document.createElement("p");
-            fileName.textContent = this.files[i].name;
-            fileNames.appendChild(fileName);
-        }
-    });
-});
-
-// events for page navigation
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("venueForm");
-    const pages = document.querySelectorAll(".form-page");
-    const steps = document.querySelectorAll(".step");
-    const prevBtn = document.querySelector(".btn-prev") as HTMLButtonElement;
-    const nextBtn = document.querySelector(".btn-next") as HTMLButtonElement;
-    const submitBtn = document.querySelector(
-        ".btn-submit"
-    ) as HTMLButtonElement;
-    let currentPage = 1;
-
-    // Navigation functions
-    function showPage(pageNumber: number) {
-        pages.forEach((page) => {
-            page.classList.remove("active");
-            if (Number.parseInt(page.dataset.page) === pageNumber) {
-                page.classList.add("active");
+        fileInput.addEventListener("change", function () {
+            fileNames.innerHTML = "";
+            for (let i = 0; i < this.files.length; i++) {
+                const fileName = document.createElement("p");
+                fileName.textContent = this.files[i].name;
+                fileNames.appendChild(fileName);
             }
         });
+    });
 
-        steps.forEach((step) => {
-            const stepNumber = Number.parseInt(step.dataset.step);
-            step.classList.remove("active");
-            if (stepNumber === pageNumber) {
-                step.classList.add("active");
-            } else if (stepNumber < pageNumber) {
-                step.classList.add("completed");
+    // events for page navigation
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("venueForm");
+        const pages = document.querySelectorAll(".form-page");
+        const steps = document.querySelectorAll(".step");
+        const prevBtn = document.querySelector(
+            ".btn-prev"
+        ) as HTMLButtonElement;
+        const nextBtn = document.querySelector(
+            ".btn-next"
+        ) as HTMLButtonElement;
+        const submitBtn = document.querySelector(
+            ".btn-submit"
+        ) as HTMLButtonElement;
+        let currentPage = 1;
+
+        // Navigation functions
+        function showPage(pageNumber: number) {
+            pages.forEach((page) => {
+                page.classList.remove("active");
+                if (Number.parseInt(page.dataset.page) === pageNumber) {
+                    page.classList.add("active");
+                }
+            });
+
+            steps.forEach((step) => {
+                const stepNumber = Number.parseInt(step.dataset.step);
+                step.classList.remove("active");
+                if (stepNumber === pageNumber) {
+                    step.classList.add("active");
+                } else if (stepNumber < pageNumber) {
+                    step.classList.add("completed");
+                } else {
+                    step.classList.remove("completed");
+                }
+            });
+
+            // Update button states
+            prevBtn.disabled = pageNumber === 1;
+            if (pageNumber === pages.length) {
+                nextBtn.style.display = "none";
+                submitBtn.style.display = "block";
             } else {
-                step.classList.remove("completed");
+                nextBtn.style.display = "block";
+                submitBtn.style.display = "none";
+            }
+        }
+
+        // Event listeners for navigation
+        prevBtn.addEventListener("click", () => {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
             }
         });
 
-        // Update button states
-        prevBtn.disabled = pageNumber === 1;
-        if (pageNumber === pages.length) {
-            nextBtn.style.display = "none";
-            submitBtn.style.display = "block";
-        } else {
-            nextBtn.style.display = "block";
-            submitBtn.style.display = "none";
-        }
-    }
-
-    // Event listeners for navigation
-    prevBtn.addEventListener("click", () => {
-        if (currentPage > 1) {
-            currentPage--;
-            showPage(currentPage);
-        }
+        nextBtn.addEventListener("click", () => {
+            if (currentPage < pages.length) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
     });
+}
 
-    nextBtn.addEventListener("click", () => {
-        if (currentPage < pages.length) {
-            currentPage++;
-            showPage(currentPage);
-        }
-    });
-});
+setupEventListeners();
