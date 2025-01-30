@@ -303,6 +303,11 @@ button i {
     margin: 0;
 }
 
+.invalid-field {
+    border: 2px solid #ff4444 !important;
+    background-color: #fff0f0;
+}
+
 @media (max-width: 768px) {
     .form-container {
         padding: 15px;
