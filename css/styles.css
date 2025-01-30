@@ -166,6 +166,7 @@ button i {
     align-items: center;
     position: relative;
     z-index: 2;
+    cursor: pointer;
 }
 
 .step i {
@@ -180,6 +181,17 @@ button i {
     color: #999;
     margin-bottom: 5px;
     transition: all 0.3s ease;
+}
+
+.step:hover i {
+    background: #f0f0f0;
+    border-color: #3498db;
+    color: #3498db;
+}
+
+.step.active i,
+.step.completed i {
+    pointer-events: none;
 }
 
 .step span {

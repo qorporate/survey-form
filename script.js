@@ -133,7 +133,12 @@ async function submitForm(event) {
 function setupEventListeners() {
     // Attach form submission handler
     const form = document.getElementById("venueForm");
-    form.addEventListener("submit", submitForm);
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (validatePage7()) {
+            await submitForm(e);
+        }
+    });
 
     // event listener for photo uploads
     // adds fileNames below button to show items have been uploaded
@@ -189,6 +194,8 @@ function setupEventListeners() {
             } else {
                 nextBtn.style.display = "block";
                 submitBtn.style.display = "none";
+
+                currentPage = pageNumber;
             }
         }
 
@@ -271,33 +278,52 @@ function setupEventListeners() {
             return alertMissingFields(getMissingFields(fields));
         }
 
+        const validationFunctions = [
+            validatePage1,
+            validatePage2,
+            validatePage3,
+            validatePage4,
+            validatePage5,
+            validatePage6,
+            validatePage7,
+        ];
+
         // Event listeners for navigation
         prevBtn.addEventListener("click", () => {
             if (currentPage > 1) {
-                currentPage--;
-                showPage(currentPage);
+                navigateToPage(currentPage - 1);
             }
         });
 
         nextBtn.addEventListener("click", () => {
-            const validationFunctions = [
-                validatePage1,
-                validatePage2,
-                validatePage3,
-                validatePage4,
-                validatePage5,
-                validatePage6,
-                validatePage7,
-            ];
+            navigateToPage(currentPage + 1);
+        });
 
-            // validate before switching pages
-            if (validationFunctions[currentPage - 1]()) {
-                if (currentPage < pages.length) {
-                    currentPage++;
-                    showPage(currentPage);
+        // Function to navigate to a specific page
+        function navigateToPage(targetPage) {
+            // Validate all pages up to the target page
+            for (let i = currentPage - 1; i < targetPage - 1; i++) {
+                if (!validationFunctions[i]()) {
+                    return false;
                 }
             }
+
+            showPage(targetPage);
+            return true;
+        }
+
+        // Add click event listeners to progress bar steps
+        steps.forEach((step) => {
+            step.addEventListener("click", () => {
+                const targetPage = Number.parseInt(step.dataset.step);
+                if (targetPage <= currentPage || navigateToPage(targetPage)) {
+                    showPage(targetPage);
+                }
+            });
         });
+
+        // Initialize the form
+        showPage(1);
     });
 
     // Add input event listeners to remove highlights when fields are filled
