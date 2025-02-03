@@ -111,19 +111,17 @@ async function submitForm(event) {
     console.log("Venue Data:", venue);
 
     try {
-        const { data, error } = await supabase
-            .from("venues")
-            .insert([venue])
-            .select();
-
-        if (error) {
-            throw error;
-        }
-        console.log("Venue saved:", data);
-
+        // const { data, error } = await supabase
+        //     .from("venues")
+        //     .insert([venue])
+        //     .select();
+        // if (error) {
+        //     throw error;
+        // }
+        // console.log("Venue saved:", data);
         // alert and reset form
-        alert("Form submitted successfully!");
-        form.reset();
+        // alert("Form submitted successfully!");
+        // form.reset();
     } catch (error) {
         console.error("Error saving venue:", error);
         alert("Failed to submit form. Please try again.");
