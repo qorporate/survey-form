@@ -55,7 +55,6 @@ async function submitForm(event) {
     // const photoUrls = await photoUpload(photos);
 
     // surveyor info
-    const surveyorName = formData.get("surveyorName"); // todo: convert yes/no to boolean
     const surveyDate = formData.get("surveyDate"); // todo: convert yes/no to boolean
     const surveyNotes = formData.get("surveyNotes"); // todo: convert yes/no to boolean
 
