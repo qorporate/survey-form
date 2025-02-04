@@ -23,8 +23,8 @@ async function submitForm(event) {
     const venueName = formData.get("name");
     const description = formData.get("description");
     const addressText = formData.get("address");
-    const longitude = formData.get("longitude");
-    const latitude = formData.get("latitude");
+    const longitude = formData.get("longitude") || 3.325952;
+    const latitude = formData.get("latitude") || 6.556877; // todo: set long & lat
     const venueType = formData.get("venueType");
     const contactPhoneNumber = formData.get("phoneNumber");
     const contactEmailAddress = formData.get("email");
@@ -59,7 +59,7 @@ async function submitForm(event) {
     // timing
     const venueClosingTime = formData.get("venueClosingTime");
     const venueOpeningTime = formData.get("venueOpeningTime");
-    const venueOpeningDays = formData.get("venueOpeningDays"); // todo: how do i get the value for this checkbox?
+    const venueOpeningDays = formData.get("venueOpeningDays") || ["Monday"]; // todo: how do i get the value for this checkbox?
     const venuePeakTimes = formData.get("venuePeakTimes");
     const averageVisitorsPerSession = formData.get("averageVisitorsPerSession");
 
@@ -129,7 +129,7 @@ async function submitForm(event) {
         hasEquipmentRental,
         hasSeatingOrSpectatorArea,
         // photos
-        // photos:
+        photoUrls: ["example.jpg"], // todo: get photos
         // surveyor info
         surveyorId,
         surveyDate,
