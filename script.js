@@ -1,3 +1,4 @@
+import { saveToSupabase, getSurveyors } from "./supabase.js";
 import {
     validatePage1,
     validatePage2,
@@ -83,8 +84,9 @@ async function submitForm(event) {
     // const photoUrls = await photoUpload(photos);
 
     // surveyor info
-    const surveyDate = formData.get("surveyDate"); // todo: convert yes/no to boolean
-    const surveyNotes = formData.get("surveyNotes"); // todo: convert yes/no to boolean
+    const surveyorId = formData.get("surveyor");
+    const surveyDate = formData.get("surveyDate");
+    const surveyNotes = formData.get("surveyNotes");
 
     // Create venue object
     const venue = {
@@ -129,7 +131,7 @@ async function submitForm(event) {
         // photos
         // photos:
         // surveyor info
-        surveyorName,
+        surveyorId,
         surveyDate,
         surveyNotes,
     };
@@ -264,6 +266,22 @@ function setupEventListeners() {
         });
     });
 
+    // populate surveyor field
+    document.addEventListener("DOMContentLoaded", async () => {
+        try {
+            const surveyorSelect = document.getElementById("surveyor");
+            const surveyors = await getSurveyors();
+
+            surveyors.forEach((surveyor) => {
+                const option = document.createElement("option");
+                option.value = surveyor.id;
+                option.textContent = [surveyor.firstName, surveyor.lastName]
+                    .filter(Boolean)
+                    .join(" ");
+                surveyorSelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error("Error loading surveyors:", error);
         }
     });
 }
