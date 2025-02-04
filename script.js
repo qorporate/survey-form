@@ -1,3 +1,12 @@
+import {
+    validatePage1,
+    validatePage2,
+    validatePage3,
+    validatePage4,
+    validatePage5,
+    validatePage6,
+    validatePage7,
+} from "./validation.js";
 // Placeholder function for form submission
 async function submitForm(event) {
     event.preventDefault();
