@@ -7,6 +7,8 @@ import {
     validatePage6,
     validatePage7,
 } from "./validation.js";
+import { yesAndNoToBoolean } from "./util.js";
+
 // Placeholder function for form submission
 async function submitForm(event) {
     event.preventDefault();
@@ -32,7 +34,11 @@ async function submitForm(event) {
     const pitchDimensions = formData.get("pitchDimensions");
     const noOfPitchesInVenue = formData.get("numberOfPitches");
     const gameSizes = formData.get("gameSize");
-    const isLightingAvailable = formData.get("isLightingAvailable"); // todo: convert yes/no to boolean
+
+    const isLightingAvailable = yesAndNoToBoolean(
+        formData.get("isLightingAvailable")
+    );
+
     const pitchFencingLevel = formData.get("pitchFencing");
     const pitchEvenness = formData.get("pitchEvenness");
 
@@ -41,7 +47,11 @@ async function submitForm(event) {
     const publicOrPrivate = formData.get("publicOrPrivate");
     const costToPlay = formData.get("costToPlay");
     const venueHourlyRate = formData.get("venueHourlyRate");
-    const isFirstAidKitAvailable = formData.get("isFirstAidKitAvailable"); // todo: convert yes/no to boolean
+
+    const isFirstAidKitAvailable = yesAndNoToBoolean(
+        formData.get("isFirstAidKitAvailable")
+    );
+
     const floodRiskLevel = formData.get("floodRiskLevel");
     const surveyorCrimeAssessment = formData.get("surveyorCrimeAssessment");
 
@@ -53,12 +63,21 @@ async function submitForm(event) {
     const averageVisitorsPerSession = formData.get("averageVisitorsPerSession");
 
     // amenities
-    const hasChangingFacilities = formData.get("hasChangingFacilities"); // todo: convert yes/no to boolean
-    const hasRestrooms = formData.get("hasRestrooms"); // todo: convert yes/no to boolean
+    const hasChangingFacilities = yesAndNoToBoolean(
+        formData.get("hasChangingFacilities")
+    );
+    const hasRestrooms = yesAndNoToBoolean(formData.get("hasRestrooms"));
     const parkingAvailability = formData.get("parkingAvailability");
-    const hasFoodOrDrinkVendors = formData.get("hasFoodOrDrinkVendors"); // todo: convert yes/no to boolean
-    const hasEquipmentRental = formData.get("hasEquipmentRental"); // todo: convert yes/no to boolean
-    const hasSeatingOrSpectatorArea = formData.get("hasSeatingOrSpectatorArea"); // todo: convert yes/no to boolean
+
+    const hasFoodOrDrinkVendors = yesAndNoToBoolean(
+        formData.get("hasFoodOrDrinkVendors")
+    );
+    const hasEquipmentRental = yesAndNoToBoolean(
+        formData.get("hasEquipmentRental")
+    );
+    const hasSeatingOrSpectatorArea = yesAndNoToBoolean(
+        formData.get("hasSeatingOrSpectatorArea")
+    );
 
     // todo: Upload photos
     // const photoUrls = await photoUpload(photos);
