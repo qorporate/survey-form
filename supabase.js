@@ -5,15 +5,12 @@ const sb = supabase.createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY);
 
 export async function saveToSupabase(venue) {
     try {
-        const { data, error } = await sb
-            .from("venues")
-            .insert([venue])
-            .select();
+        const { error } = await sb.from("venues").insert(venue);
         if (error) {
             throw error;
         }
-        console.log("Venue saved:", data);
-        // alert and reset form
+
+        console.log("Venue saved:");
         alert("Form submitted successfully!");
         // form.reset();
     } catch (error) {
@@ -30,4 +27,30 @@ export async function getSurveyors() {
         throw error;
     }
     return data;
+}
+
+export async function verifyOtp(email, token) {
+    const { error } = await sb.auth.verifyOtp({
+        email,
+        token,
+        type: "email",
+    });
+
+    if (error) {
+        alert("Error verifying OTP: " + error.message);
+    } else {
+        alert("Authentication successful!");
+        window.location.href = "index.html";
+    }
+}
+
+export async function isAuthenticated() {
+    const {
+        data: { user },
+    } = await sb.auth.getUser();
+    return !!user;
+}
+
+export async function signInWithOtp(email) {
+    return await sb.auth.signInWithOtp({ email });
 }

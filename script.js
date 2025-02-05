@@ -1,4 +1,4 @@
-import { saveToSupabase, getSurveyors } from "./supabase.js";
+import { saveToSupabase, getSurveyors, isAuthenticated } from "./supabase.js";
 import {
     validatePage1,
     validatePage2,
@@ -9,6 +9,13 @@ import {
     validatePage7,
 } from "./validation.js";
 import { yesAndNoToBoolean } from "./util.js";
+
+async function checkAuth() {
+    const authenticated = await isAuthenticated();
+    if (!authenticated) {
+        window.location.href = "auth.html";
+    }
+}
 
 // Placeholder function for form submission
 async function submitForm(event) {
@@ -142,7 +149,11 @@ async function submitForm(event) {
     await saveToSupabase(venue);
 }
 
-function setupEventListeners() {
+async function setupEventListeners() {
+    checkAuth().catch((error) => {
+        console.error(error);
+    });
+
     // Attach form submission handler
     const form = document.getElementById("venueForm");
     form.addEventListener("submit", async (e) => {
@@ -286,4 +297,6 @@ function setupEventListeners() {
     });
 }
 
-setupEventListeners();
+setupEventListeners().catch((error) => {
+    console.error(error);
+});

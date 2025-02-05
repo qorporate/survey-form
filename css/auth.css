@@ -1,0 +1,21 @@
+/* styles for the resend button and button group */
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-resend {
+    background-color: #f39c12;
+    color: white;
+    width: auto;
+    flex: 1;
+}
+
+.btn-resend:hover:not(:disabled) {
+    background-color: #e67e22;
+}
+
+.btn-resend:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
