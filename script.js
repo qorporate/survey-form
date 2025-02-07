@@ -75,7 +75,11 @@ async function submitForm(event) {
     // timing
     const venueClosingTime = formData.get("venueClosingTime");
     const venueOpeningTime = formData.get("venueOpeningTime");
-    const venueOpeningDays = formData.get("venueOpeningDays") || ["Monday"]; // todo: how do i get the value for this checkbox?
+
+    const venueOpeningDays = Array.from(
+        document.querySelectorAll('input[name="days"]:checked')
+    ).map((checkbox) => checkbox.value);
+
     const venuePeakTimes = formData.get("venuePeakTimes");
     const averageVisitorsPerSession = formData.get("averageVisitorsPerSession");
 
@@ -278,8 +282,6 @@ async function setupEventListeners() {
             if (!user) {
                 throw new Error("User not authenticated!");
             }
-
-            console.log(user);
 
             // Set surveyor name and ID
             const surveyorSelect = document.getElementById("surveyor");
