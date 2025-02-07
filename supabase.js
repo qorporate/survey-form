@@ -54,3 +54,23 @@ export async function isAuthenticated() {
 export async function signInWithOtp(email) {
     return await sb.auth.signInWithOtp({ email });
 }
+
+export async function uploadPhoto(file) {
+    const { data, error } = await sb.storage
+        .from("venue-photos")
+        .upload(`${Date.now()}_${file.name}`, file);
+    console.log(data);
+
+    if (error) {
+        throw error;
+    }
+
+    const res = sb.storage.from("venue-photos").getPublicUrl(data.path);
+    console.log(res);
+
+    if (!res) {
+        throw new Error("Failed to get image.");
+    }
+
+    return res.data.publicUrl;
+}

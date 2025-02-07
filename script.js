@@ -1,4 +1,9 @@
-import { saveToSupabase, getSurveyors, isAuthenticated } from "./supabase.js";
+import {
+    saveToSupabase,
+    getSurveyors,
+    isAuthenticated,
+    uploadPhoto,
+} from "./supabase.js";
 import {
     validatePage1,
     validatePage2,
@@ -9,6 +14,9 @@ import {
     validatePage7,
 } from "./validation.js";
 import { yesAndNoToBoolean } from "./util.js";
+
+// updated in the photo upload event handler
+let uploadedPhotos = [];
 
 async function checkAuth() {
     const authenticated = await isAuthenticated();
@@ -136,7 +144,7 @@ async function submitForm(event) {
         hasEquipmentRental,
         hasSeatingOrSpectatorArea,
         // photos
-        photoUrls: ["example.jpg"], // todo: get photos
+        photoUrls: uploadedPhotos, // todo: get photos
         // surveyor info
         surveyorId,
         surveyDate,
@@ -161,22 +169,6 @@ async function setupEventListeners() {
         if (validatePage7()) {
             await submitForm(e);
         }
-    });
-
-    // event listener for photo uploads
-    // adds fileNames below button to show items have been uploaded
-    document.addEventListener("DOMContentLoaded", () => {
-        const fileInput = document.getElementById("photos");
-        const fileNames = document.getElementById("file-names");
-
-        fileInput.addEventListener("change", function () {
-            fileNames.innerHTML = "";
-            for (let i = 0; i < this.files.length; i++) {
-                const fileName = document.createElement("p");
-                fileName.textContent = this.files[i].name;
-                fileNames.appendChild(fileName);
-            }
-        });
     });
 
     // events for page navigation
@@ -278,6 +270,7 @@ async function setupEventListeners() {
     });
 
     // populate surveyor field
+    // todo: get surveyor on auth
     document.addEventListener("DOMContentLoaded", async () => {
         try {
             const surveyorSelect = document.getElementById("surveyor");
@@ -295,6 +288,48 @@ async function setupEventListeners() {
             console.error("Error loading surveyors:", error);
         }
     });
+
+    // photo upload handling
+    const photoPreviewContainer = document.getElementById(
+        "photo-preview-container"
+    );
+    const photoInput = document.getElementById("photos");
+    photoInput.addEventListener("change", async (event) => {
+        const files = event.target.files;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            try {
+                const publicURL = await uploadPhoto(file);
+
+                uploadedPhotos.push(publicURL);
+                displayPhotoPreview(publicURL);
+            } catch (error) {
+                console.error("Error uploading file:", error);
+                alert("Failed to upload file. Please try again.");
+            }
+        }
+    });
+
+    function displayPhotoPreview(url) {
+        const previewElement = document.createElement("div");
+
+        previewElement.className = "photo-preview";
+        previewElement.innerHTML = `
+        <img src="${url}" alt="Uploaded venue photo">
+        <button class="remove-photo" data-url="${url}">&times;</button>
+    `;
+        photoPreviewContainer.appendChild(previewElement);
+
+        previewElement
+            .querySelector(".remove-photo")
+            .addEventListener("click", function () {
+                const urlToRemove = this.getAttribute("data-url");
+                uploadedPhotos = uploadedPhotos.filter(
+                    (url) => url !== urlToRemove
+                );
+                photoPreviewContainer.removeChild(previewElement);
+            });
+    }
 }
 
 setupEventListeners().catch((error) => {
