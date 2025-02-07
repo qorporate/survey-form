@@ -3,6 +3,7 @@ import {
     getSurveyors,
     isAuthenticated,
     uploadPhoto,
+    getUser,
 } from "./supabase.js";
 import {
     validatePage1,
@@ -99,7 +100,7 @@ async function submitForm(event) {
     // const photoUrls = await photoUpload(photos);
 
     // surveyor info
-    const surveyorId = formData.get("surveyor");
+    const userId = formData.get("userId");
     const surveyDate = formData.get("surveyDate");
     const surveyNotes = formData.get("surveyNotes");
 
@@ -146,7 +147,7 @@ async function submitForm(event) {
         // photos
         photoUrls: uploadedPhotos, // todo: get photos
         // surveyor info
-        surveyorId,
+        userId,
         surveyDate,
         surveyNotes,
     };
@@ -273,17 +274,19 @@ async function setupEventListeners() {
     // todo: get surveyor on auth
     document.addEventListener("DOMContentLoaded", async () => {
         try {
-            const surveyorSelect = document.getElementById("surveyor");
-            const surveyors = await getSurveyors();
+            const user = await getUser();
+            if (!user) {
+                throw new Error("User not authenticated!");
+            }
 
-            surveyors.forEach((surveyor) => {
-                const option = document.createElement("option");
-                option.value = surveyor.id;
-                option.textContent = [surveyor.firstName, surveyor.lastName]
-                    .filter(Boolean)
-                    .join(" ");
-                surveyorSelect.appendChild(option);
-            });
+            console.log(user);
+
+            // Set surveyor name and ID
+            const surveyorSelect = document.getElementById("surveyor");
+            const userId = document.getElementById("userId");
+
+            surveyorSelect.value = user.email; // Display email in readonly field
+            userId.value = user.id; // Set ID in hidden field
         } catch (error) {
             console.error("Error loading surveyors:", error);
         }

@@ -438,3 +438,13 @@ button i {
     background-color: rgba(255, 0, 0, 0.7);
     color: white;
 }
+
+#surveyor {
+    cursor: not-allowed;
+}
+
+input[readonly] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    color: #666;
+}

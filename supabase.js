@@ -51,6 +51,11 @@ export async function isAuthenticated() {
     return !!user;
 }
 
+export async function getUser() {
+    const { data } = await sb.auth.getSession();
+    return data.session.user;
+}
+
 export async function signInWithOtp(email) {
     return await sb.auth.signInWithOtp({ email });
 }
