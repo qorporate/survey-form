@@ -100,9 +100,6 @@ async function submitForm(event) {
         formData.get("hasSeatingOrSpectatorArea")
     );
 
-    // todo: Upload photos
-    // const photoUrls = await photoUpload(photos);
-
     // surveyor info
     const userId = formData.get("userId");
     const surveyDate = formData.get("surveyDate");
@@ -149,7 +146,7 @@ async function submitForm(event) {
         hasEquipmentRental,
         hasSeatingOrSpectatorArea,
         // photos
-        photoUrls: uploadedPhotos, // todo: get photos
+        photoUrls: uploadedPhotos,
         // surveyor info
         userId,
         surveyDate,
@@ -275,7 +272,6 @@ async function setupEventListeners() {
     });
 
     // populate surveyor field
-    // todo: get surveyor on auth
     document.addEventListener("DOMContentLoaded", async () => {
         try {
             const user = await getUser();
