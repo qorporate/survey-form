@@ -33,22 +33,15 @@ export function validatePage3() {
     return alertMissingFields(getMissingFields(fields));
 }
 
-// todo: for numeric or array values, i can highlight the fields by passing a value to alertMissingFields().
-// input is of type - field: { id: string }
 export function validatePage4() {
     const fields = {
-        venueOpeningTime: document
-            .getElementById("venueOpeningTime")
-            .value.trim(), // todo: how is time handled
-        venueClosingTime: document
-            .getElementById("venueClosingTime")
-            .value.trim(), // todo: how is time handled
-        checkedDays: document.querySelectorAll('input[name="days"]:checked')
-            .length, // todo: how do we highlight this section?
+        venueOpeningTime: document.getElementById("venueOpeningTime").value,
+        venueClosingTime: document.getElementById("venueClosingTime").value,
+        checkedDays: document.querySelectorAll('input[name="days"]:checked'),
         venuePeakTimes: document.getElementById("venuePeakTimes").value.trim(),
-        averageVisitorsPerSession: document.getElementById(
-            "averageVisitorsPerSession"
-        ).value,
+        averageVisitorsPerSession: Number(
+            document.getElementById("averageVisitorsPerSession").value
+        ),
     };
 
     return alertMissingFields(getMissingFields(fields));
@@ -72,7 +65,19 @@ export function validatePage7() {
 
 function getMissingFields(fields) {
     return Object.entries(fields)
-        .filter(([_, value]) => value === "")
+        .filter(([_, value]) => {
+            // Handle different types of values
+            if (typeof value === "number") {
+                return isNaN(value) || value <= 0;
+            }
+            if (typeof value === "object" && value?.length !== undefined) {
+                return value.length === 0;
+            }
+            if (typeof value === "string") {
+                return value.trim() === "";
+            }
+            return !value; // catches null, undefined, empty strings
+        })
         .map(([key, _]) => ({
             id: key.replace(" ", ""),
             label: key.charAt(0).toUpperCase() + key.slice(1),

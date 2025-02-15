@@ -12,7 +12,6 @@ export async function saveToSupabase(venue) {
 
         console.log("Venue saved:");
         alert("Form submitted successfully!");
-        // form.reset();
     } catch (error) {
         console.error("Error saving venue:", error);
         alert("Failed to submit form. Please try again.");
