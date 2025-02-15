@@ -4,8 +4,8 @@ export function validatePage1() {
     const fields = {
         name: document.getElementById("name").value.trim(),
         address: document.getElementById("address").value.trim(),
-        address: document.getElementById("longitude").value,
-        address: document.getElementById("latitude").value,
+        longitude: document.getElementById("longitude").value,
+        latitude: document.getElementById("latitude").value,
         venueType: document.getElementById("venueType").value,
         phoneNumber: document.getElementById("phoneNumber").value,
         email: document.getElementById("email").value,
